@@ -1,0 +1,72 @@
+You are an expert full-stack developer specialized in Web3 and DeFi UI design.
+Build a Next.js + TailwindCSS frontend for a decentralized finance (DeFi) application called DeFAI Platform — a prototype that integrates with AI Agents to help users provide liquidity automatically and optimize trading fee profits.
+
+Core goals:
+
+Enable users to connect their wallet (Phantom, Sui Wallet, or MetaMask).
+
+Display liquidity pools from Raydium (Solana), Cetus (Sui), and Momentum (Sui).
+
+Allow users to simulate and compare LP performance between:
+
+Manual liquidity providing (user chooses pool, ratio, amount).
+
+AI-assisted liquidity providing (AI Agent suggests strategy).
+
+Show metrics like expected APR, impermanent loss, trading volume, and gas cost.
+
+Include a dashboard with:
+
+Portfolio summary
+
+Pool list
+
+AI recommendations section
+
+History of strategy adjustments
+
+Tech stack:
+
+Frontend: Next.js (App Router) + TailwindCSS + TypeScript
+
+State management: Zustand or Context API
+
+Wallet connection: @solana/wallet-adapter-react and @suiet/wallet-kit
+
+API integration: connect to a NestJS backend (e.g., http://localhost:3000/api/agent) for AI Agent insights and LP data
+
+Graphs: Recharts or Chart.js for APR and IL visualization
+
+UI Design:
+
+Clean DeFi dashboard style (dark mode, responsive grid layout).
+
+Use Tailwind components for cards, tables, and modals.
+
+Include pages:
+
+/dashboard — overview of LP status and metrics
+
+/pools — list of available pools
+
+/ai-agent — chat or recommendation interface
+
+/profile — connected wallet info and LP history
+
+Deliverables:
+
+Full project structure (pages, components, hooks, services)
+
+Example mock data for pools and AI suggestions
+
+Ready to integrate with real API and smart contract calls later
+
+Optional (if time):
+
+Add wallet transaction history table
+
+Integrate basic chart animations with Framer Motion
+
+Use shadcn/ui components for modern design consistency
+
+Generate the complete frontend code with modular, reusable components and meaningful comments explaining key logic.
