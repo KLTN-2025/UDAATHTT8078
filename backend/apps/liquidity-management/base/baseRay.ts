@@ -13,7 +13,7 @@ import useSerumMarketAccountSizes from "./getMarketAccountSizes";
 import { Result } from "./types";
 import { calcDecimalValue, calcNonDecimalValue, getNullableResutFromPromise, sleep } from "./utils";
 import { toBufferBE } from "bigint-buffer";
-import { ENV } from "../constants";
+import { ENV } from "../utils/constants";
 
 // export const RAYDIUM_AMM_PROGRAM = new web3.PublicKey("675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8")
 // const _OPEN_BOOK_DEX_PROGRAM = "srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX"

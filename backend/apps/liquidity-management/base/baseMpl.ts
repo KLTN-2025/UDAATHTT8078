@@ -2,7 +2,7 @@ import { AnchorProvider, BN, Wallet, web3 } from "@project-serum/anchor";
 import { utf8 } from "@project-serum/anchor/dist/cjs/utils/bytes";
 import { BaseSpl } from "./baseSpl";
 import { calcNonDecimalValue, deployJsonData, getKeypairFromEnv, sendAndConfirmTransaction, sleep } from "../utils";
-import { ENV, RPC_ENDPOINT_DEV, RPC_ENDPOINT_MAIN } from "../constants";
+import { ENV, RPC_ENDPOINT_DEV, RPC_ENDPOINT_MAIN } from "../utils/constants";
 
 import { TokenMetadataAuthorizationDetails, getAccountParsingAndAssertingFunction, Sft } from '@metaplex-foundation/js/dist/types';
 import {
