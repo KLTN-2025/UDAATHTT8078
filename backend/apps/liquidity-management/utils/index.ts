@@ -2,7 +2,7 @@ import { web3 } from "@project-serum/anchor";
 import yargs, { command, option } from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { addLiquidity, createAndBuy, createMarket, createPool, createToken, mintTo, removeLiquidity, removeLiquidityFaster, revokeAuthority, swap, unwrapSol } from "./txHandler";
-import { getPubkeyFromStr, getSlippage } from "./utils";
+import { getPubkeyFromStr, getSlippage } from ".";
 
 const log = console.log;
 const delay = (ms: any) => new Promise(resolve => setTimeout(resolve, ms))
