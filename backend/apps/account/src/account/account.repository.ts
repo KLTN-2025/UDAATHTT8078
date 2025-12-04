@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { User } from './entities/user.entity';
-import { UserAccount } from './entities/user-account.entity';
+import { User } from './user.entity';
+import { UserAccount, UserAccountType } from './user-account.entity';
 
 @Injectable()
 export class AccountRepository {
@@ -23,6 +23,18 @@ export class AccountRepository {
       where: { id },
       relations: ['accounts'],
     });
+  }
+
+  async findUserByEmail(email: string) {
+    return this.userRepo.findOne({
+      where: { email },
+      relations: ['accounts'],
+    });
+  }
+
+  async createUser(data: Partial<User>) {
+    const user = this.userRepo.create(data);
+    return this.userRepo.save(user);
   }
 
   async updateUser(id: string, data: Partial<User>) {
@@ -56,5 +68,39 @@ export class AccountRepository {
     return this.accRepo.find({
       where: { user: { id: userId } },
     });
+  }
+
+  async findOrCreateUserWithAccount(options: {
+    type: UserAccountType;
+    provider: string;
+    value: string;
+    email?: string | null;
+  }) {
+    const existingAccount = await this.findAccountByValue(options.value);
+    if (existingAccount) {
+      const user = await this.findUserById(existingAccount.user.id);
+      return { user, account: existingAccount };
+    }
+
+    let user = options.email
+      ? await this.findUserByEmail(options.email)
+      : undefined;
+
+    if (!user) {
+      user = await this.createUser({
+        email: options.email ?? null,
+        emailVerified: false,
+      });
+    }
+
+    const account = await this.createAccount({
+      user,
+      type: options.type,
+      provider: options.provider,
+      value: options.value,
+      isPrimary: options.type === 'email',
+    });
+
+    return { user, account };
   }
 }

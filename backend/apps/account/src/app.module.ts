@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ScheduleModule } from '@nestjs/schedule';
-import { dbOrmModuleAsync } from './config/config.typeorm';
-import loggerModule from './config/config.logger';
 import { AppController } from './app.controller';
 import { AccountModule } from './account/account.module';
 import {
@@ -20,8 +18,6 @@ import { cacheModule } from 'libs/cache/cache.config';
 
 @Module({
   imports: [
-    dbOrmModuleAsync,
-    loggerModule,
     EventEmitterModule.forRoot(),
     RedisModule.forRootAsync({
       host: REDIS_HOST,

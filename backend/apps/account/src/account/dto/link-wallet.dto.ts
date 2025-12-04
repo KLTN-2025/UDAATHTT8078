@@ -1,6 +1,9 @@
+import { IsIn, IsString } from 'class-validator';
+
 export class LinkWalletDto {
   @IsString()
-  chain: string; // "solana" | "sui"
+  @IsIn(['solana', 'sui'])
+  chain: 'solana' | 'sui';
 
   @IsString()
   address: string;

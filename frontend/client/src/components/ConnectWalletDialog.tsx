@@ -21,9 +21,9 @@ const wallets: { type: WalletType; chain: Chain; name: string; icon: string }[] 
 export default function ConnectWalletDialog() {
   const [open, setOpen] = useState(false);
   const { connectWallet } = useWallet();
-
-  const handleConnect = (type: WalletType, chain: Chain) => {
-    connectWallet(type, chain);
+ 
+  const handleConnect = async (type: WalletType, chain: Chain) => {
+    await connectWallet(type, chain);
     setOpen(false);
   };
 

@@ -27,8 +27,17 @@ async function bootstrap() {
     bufferLogs: true,
     logger: ['error', 'warn', 'log', 'debug', 'verbose'],
   });
-  app.enableCors();
+  app.enableCors({ origin: true, credentials: true });
   app.flushLogs();
+
+  // Very simple user context: trust x-user-id header for now (prototype only)
+  app.use((req: any, _res, next) => {
+    const userId = req.headers['x-user-id'] as string | undefined;
+    if (userId) {
+      req.user = { id: userId };
+    }
+    next();
+  });
   app.setGlobalPrefix(CONTEXT_PATH, {
     exclude: ['health'],
   });

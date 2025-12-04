@@ -4,10 +4,12 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AuthProvider } from "@/contexts/AuthContext";
 import { WalletProvider, useWallet } from "@/contexts/WalletContext";
 import AppSidebar from "@/components/AppSidebar";
 import WalletButton from "@/components/WalletButton";
 import ConnectWalletDialog from "@/components/ConnectWalletDialog";
+import { EmailLoginDialog } from "@/components/EmailLoginDialog";
 import Dashboard from "@/pages/Dashboard";
 import Pools from "@/pages/Pools";
 import AIAgent from "@/pages/AIAgent";
@@ -48,6 +50,7 @@ function AppContent() {
             </SidebarTrigger>
             <div className="flex items-center gap-3">
               {wallet ? <WalletButton /> : <ConnectWalletDialog />}
+              <EmailLoginDialog />
             </div>
           </header>
           <main className="flex-1 overflow-y-auto p-6">
@@ -65,9 +68,11 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WalletProvider>
-          <AppContent />
-        </WalletProvider>
+        <AuthProvider>
+          <WalletProvider>
+            <AppContent />
+          </WalletProvider>
+        </AuthProvider>
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>
